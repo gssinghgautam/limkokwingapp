@@ -32,11 +32,13 @@
             android:name=".ui.signup.SignUpActivity"
             android:windowSoftInputMode="adjustResize" />
 
-        <activity android:name=".ui.images.ImageActivity"
+        <activity
+            android:name=".ui.images.ImageActivity"
             android:label="@string/image_gallery"
-            android:theme="@style/AppTheme.Main"
-            />
-        <activity android:name=".ui.images.FullImageActivity" />
+            android:theme="@style/AppTheme.Main" />
+        <activity
+            android:name=".ui.images.FullImageActivity"
+            android:theme="@style/AppTheme.Image" />
     </application>
 
 </manifest>

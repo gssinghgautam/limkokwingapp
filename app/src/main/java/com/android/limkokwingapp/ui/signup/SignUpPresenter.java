@@ -47,7 +47,7 @@ public class SignUpPresenter extends BasePresenter<SignUpContract.View> implemen
     @Override
     public void doSignUp() {
         User user = new User();
-        user.setFirstName(view.getEmail());
+        user.setFirstName(view.getFName());
         user.setLastName(view.getLName());
         user.setEmail(view.getEmail());
         user.setPassword(view.getPassword());
