@@ -10,13 +10,13 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.ui.main.MainActivity;
 import com.android.limkokwingapp.ui.signup.SignUpActivity;
 import com.android.limkokwingapp.utility.ApiConstant;
+import com.android.limkokwingapp.utility.Utils;
 
 import javax.inject.Inject;
 
@@ -76,8 +76,8 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void attach() {
-        mEditEmailLayout.addTextChangedListener(textWatcher);
-        mEditPasswordLayout.addTextChangedListener(textWatcher);
+        mEditEmailLayout.addTextChangedListener(mTextWatcher);
+        mEditPasswordLayout.addTextChangedListener(mTextWatcher);
     }
 
     @Override
@@ -96,12 +96,12 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onEmailEmpty() {
-        Toast.makeText(this, getString(R.string.empty_fields_error_msg), Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, getString(R.string.empty_fields_error_msg));
     }
 
     @Override
     public void onPasswordEmpty() {
-        Toast.makeText(this, getString(R.string.empty_fields_error_msg), Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, getString(R.string.empty_fields_error_msg));
     }
 
     @Override
@@ -116,7 +116,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
 
     @Override
     public void onValidationFailed() {
-        Toast.makeText(this, R.string.user_not_exists, Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, getString(R.string.user_not_exists));
     }
 
     @Override
@@ -148,7 +148,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         presenter.stop();
     }
 
-    private TextWatcher textWatcher = new TextWatcher() {
+    private TextWatcher mTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

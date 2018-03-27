@@ -21,6 +21,7 @@ import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.ui.main.MainActivity;
 import com.android.limkokwingapp.utility.ApiConstant;
+import com.android.limkokwingapp.utility.Utils;
 
 import javax.inject.Inject;
 
@@ -141,7 +142,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void onFieldEmpty() {
-        Toast.makeText(this, R.string.empty_form_error_msg, Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, getString(R.string.empty_form_error_msg));
     }
 
     @Override
@@ -161,12 +162,12 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     @Override
     public void onGenderInvalid() {
-        Toast.makeText(this, getString(R.string.invalid_gender), Toast.LENGTH_SHORT).show();
+        Utils.showToast(this, getString(R.string.invalid_gender));
     }
 
     @Override
     public void onSignUpFailed() {
-        Toast.makeText(this, R.string.email_exists_error_msg, Toast.LENGTH_SHORT).show();
+        Utils.showToast(this,getString(R.string.email_exists_error_msg));
     }
 
     @Override
