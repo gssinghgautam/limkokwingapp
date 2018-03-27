@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">LimkokwingApp</string>
+    <string name="email_hint">Email</string>
+    <string name="limkokwing_unversity">limkokwing university logo</string>
+    <string name="login">LOGIN</string>
+    <string name="password_hint">Password</string>
+    <string name="password_description">Password Description</string>
+    <string name="empty_fields_error_msg">All fields are required</string>
+    <string name="invalid_email_error_msg">Email is not valid</string>
+    <string name="invalid_password_error_msg">Password should contain one special character and a minimum 8 characters required</string>
+    <string name="invalid_mobile_error_msg">Mobile number is not valid</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="new_here_sign_up">New here? Sign up</string>
+    <string name="invalid_gender">Please select gender</string>
+    <string name="empty_form_error_msg">Please Complete the form</string>
+    <string name="email_exists_error_msg">Email already exists</string>
+    <string name="logout">logout</string>
+    <string name="show_images">Show Images</string>
+    <string name="welcome">Welcome</string>
+    <string name="mobile_number">Mobile Number</string>
+    <string name="update_mobile">Update Mobile</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="mobile_update_success_msg">Mobile Number updated successfully</string>
+    <string name="mobile_update_failed_msg">Mobile Number update failed</string>
+    <string name="mobile_empty_error_msg">Mobile Number cannot be empty</string>
+    <string name="user_not_exists">User Does not exists</string>
+    <string name="image_gallery">Image Gallery</string>
+</resources>
