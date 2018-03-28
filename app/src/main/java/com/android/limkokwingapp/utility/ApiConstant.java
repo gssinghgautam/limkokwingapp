@@ -4,6 +4,7 @@ package com.android.limkokwingapp.utility;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ApiConstant {
 
     public static final int TIMEOUT_IN_SEC = 125;
@@ -21,10 +22,6 @@ public class ApiConstant {
     public static final String FLICKER_API_KEY = "266d2e5c91b2ffbbcd77060aa5237aae";
 
     public static final int PER_PAGE = 20;
-
-    public static final String FLICKER_SECRET = "e09656c718115506";
-
-    public static final int PAGINATION_MARGIN = 5;
 
     public static final String PHOTO_EXTRA = "photo_extra";
 }

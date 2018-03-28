@@ -15,6 +15,7 @@ import dagger.android.HasActivityInjector;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class App extends Application implements HasActivityInjector {
 
     @Inject

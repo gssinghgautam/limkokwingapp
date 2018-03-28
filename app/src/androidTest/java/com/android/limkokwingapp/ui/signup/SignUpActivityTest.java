@@ -32,6 +32,7 @@ import static org.hamcrest.core.StringContains.containsString;
 /**
  * Created by gautam on 27/03/18.
  */
+@SuppressWarnings("DefaultFileTemplate")
 @RunWith(AndroidJUnit4.class)
 public class SignUpActivityTest {
 

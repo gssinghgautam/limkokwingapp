@@ -1,4 +1,4 @@
-package com.android.limkokwingapp.ui.signup;
+package com.android.limkokwingapp.ui.signup.view;
 
 import com.android.limkokwingapp.BaseView;
 import com.android.limkokwingapp.data.entity.User;
@@ -7,6 +7,7 @@ import com.android.limkokwingapp.data.entity.User;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface SignUpContract {
 
     interface View extends BaseView {

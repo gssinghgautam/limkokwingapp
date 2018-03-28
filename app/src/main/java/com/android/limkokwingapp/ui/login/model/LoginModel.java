@@ -1,9 +1,10 @@
-package com.android.limkokwingapp.ui.login;
+package com.android.limkokwingapp.ui.login.model;
 
 /**
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginModel {
 
     private String mEmail;

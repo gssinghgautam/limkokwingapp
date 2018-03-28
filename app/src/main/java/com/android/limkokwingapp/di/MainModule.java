@@ -4,8 +4,8 @@ import android.content.SharedPreferences;
 
 import com.android.limkokwingapp.data.repository.local.UserDataSource;
 import com.android.limkokwingapp.rx.AppSchedulerProvider;
-import com.android.limkokwingapp.ui.main.MainContract;
-import com.android.limkokwingapp.ui.main.MainPresenter;
+import com.android.limkokwingapp.ui.main.view.MainContract;
+import com.android.limkokwingapp.ui.main.presenter.MainPresenter;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,6 +14,7 @@ import dagger.Provides;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @Module
 public class MainModule {
 

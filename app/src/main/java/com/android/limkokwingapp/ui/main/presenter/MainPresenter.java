@@ -1,4 +1,4 @@
-package com.android.limkokwingapp.ui.main;
+package com.android.limkokwingapp.ui.main.presenter;
 
 import android.content.SharedPreferences;
 
@@ -6,6 +6,7 @@ import com.android.limkokwingapp.BasePresenter;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.data.repository.local.UserDataSource;
 import com.android.limkokwingapp.rx.AppSchedulerProvider;
+import com.android.limkokwingapp.ui.main.view.MainContract;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.ValidationUtils;
 import com.jakewharton.rxrelay2.BehaviorRelay;
@@ -19,6 +20,7 @@ import io.reactivex.Observable;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
     private final MainContract.View view;
@@ -49,12 +51,12 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
 
     @Override
     public void updateUserInfo(User user) {
-        if (!isValid(user.getMobile())) {
+        if (!isValid(user.getMobileNumber())) {
             return;
         }
-        addDisposable(Completable.fromRunnable(() -> userDataSource.saveUser(user))
+        addDisposable(Completable.fromRunnable(() -> userDataSource.updateUser(user))
                 .subscribeOn(appSchedulerProvider.computation())
-                .observeOn(appSchedulerProvider.computation())
+                .observeOn(appSchedulerProvider.ui())
                 .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
                 .doOnError(t -> {
                     view.onUpdateFailed();

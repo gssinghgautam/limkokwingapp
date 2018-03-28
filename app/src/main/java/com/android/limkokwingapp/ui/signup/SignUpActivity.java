@@ -15,11 +15,12 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.ui.main.MainActivity;
+import com.android.limkokwingapp.ui.signup.presenter.SignUpPresenter;
+import com.android.limkokwingapp.ui.signup.view.SignUpContract;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.Utils;
 
@@ -30,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.OnItemSelected;
 import dagger.android.AndroidInjection;
-
+@SuppressWarnings("WeakerAccess")
 public class SignUpActivity extends AppCompatActivity implements SignUpContract.View {
 
     @BindView(R.id.iv_logo)
@@ -94,7 +95,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
 
     private void setGenderSpinner() {
         String[] genderArray = getResources().getStringArray(R.array.gender_array);
-        ArrayAdapter<String> genderAdapter = new ArrayAdapter<String>(SignUpActivity.this, R.layout.gender_drop_down_layout,
+        ArrayAdapter<String> genderAdapter = new ArrayAdapter<>(SignUpActivity.this, R.layout.gender_drop_down_layout,
                 R.id.tv_gender, genderArray);
         spGender.setAdapter(genderAdapter);
     }
@@ -211,7 +212,7 @@ public class SignUpActivity extends AppCompatActivity implements SignUpContract.
         presenter.stop();
     }
 
-    private TextWatcher textWatcher = new TextWatcher() {
+    private final TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

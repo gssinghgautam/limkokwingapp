@@ -8,7 +8,6 @@ import android.support.test.runner.AndroidJUnit4;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.ui.main.MainActivity;
-import com.android.limkokwingapp.ui.signup.SignUpActivity;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -31,6 +30,7 @@ import static org.hamcrest.CoreMatchers.not;
 /**
  * Created by gautam on 27/03/18.
  */
+@SuppressWarnings("DefaultFileTemplate")
 @RunWith(AndroidJUnit4.class)
 public class LoginActivityTest {
 

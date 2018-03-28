@@ -10,6 +10,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 public class FlickerPhotos implements Parcelable {
 
     @SerializedName("photos")

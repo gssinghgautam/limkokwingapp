@@ -20,6 +20,7 @@ import butterknife.ButterKnife;
  * Created by gautam on 27/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class FullImageActivity extends AppCompatActivity {
 
     @BindView(R.id.iv_photo)

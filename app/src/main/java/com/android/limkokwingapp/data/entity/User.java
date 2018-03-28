@@ -1,6 +1,8 @@
 package com.android.limkokwingapp.data.entity;
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -9,36 +11,44 @@ import android.os.Parcelable;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @Entity(tableName = "user")
 public class User implements Parcelable {
 
     @PrimaryKey(autoGenerate = true)
-    private int id;
+    @ColumnInfo(name = "id")
+    private int mId;
 
-    private String firstName;
+    @ColumnInfo(name = "first_name")
+    private String mFirstName;
 
-    private String lastName;
+    @ColumnInfo(name = "last_name")
+    private String mLastName;
 
-    private String mobile;
+    @ColumnInfo(name = "mobile")
+    private String mMobileNumber;
 
-    private String email;
+    @ColumnInfo(name = "email")
+    private String mEmail;
 
-    private String gender;
+    @ColumnInfo(name = "gender")
+    private String mGender;
 
-    private String password;
+    @ColumnInfo(name = "password")
+    private String mPassword;
 
     public User() {
 
     }
-
+    @Ignore
     protected User(Parcel in) {
-        id = in.readInt();
-        firstName = in.readString();
-        lastName = in.readString();
-        mobile = in.readString();
-        email = in.readString();
-        gender = in.readString();
-        password = in.readString();
+        mId = in.readInt();
+        mFirstName = in.readString();
+        mLastName = in.readString();
+        mMobileNumber = in.readString();
+        mEmail = in.readString();
+        mGender = in.readString();
+        mPassword = in.readString();
     }
 
     public static final Creator<User> CREATOR = new Creator<User>() {
@@ -53,65 +63,66 @@ public class User implements Parcelable {
         }
     };
 
+    @Ignore
     public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public String getEmail() {
-        return email;
+        this.mEmail = email;
+        this.mPassword = password;
     }
 
     public int getId() {
-        return id;
+        return mId;
+    }
+
+    public void setId(int mId) {
+        this.mId = mId;
     }
 
     public String getFirstName() {
-        return firstName;
+        return mFirstName;
+    }
+
+    public void setFirstName(String mFirstName) {
+        this.mFirstName = mFirstName;
     }
 
     public String getLastName() {
-        return lastName;
+        return mLastName;
     }
 
-    public String getMobile() {
-        return mobile;
+    public void setLastName(String mLastName) {
+        this.mLastName = mLastName;
+    }
+
+    public String getMobileNumber() {
+        return mMobileNumber;
+    }
+
+    public void setMobileNumber(String mMobileNumber) {
+        this.mMobileNumber = mMobileNumber;
+    }
+
+    public String getEmail() {
+        return mEmail;
+    }
+
+    public void setEmail(String mEmail) {
+        this.mEmail = mEmail;
     }
 
     public String getGender() {
-        return gender;
+        return mGender;
+    }
+
+    public void setGender(String mGender) {
+        this.mGender = mGender;
     }
 
     public String getPassword() {
-        return password;
+        return mPassword;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String mPassword) {
+        this.mPassword = mPassword;
     }
 
     @Override
@@ -121,12 +132,12 @@ public class User implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeInt(id);
-        parcel.writeString(firstName);
-        parcel.writeString(lastName);
-        parcel.writeString(mobile);
-        parcel.writeString(email);
-        parcel.writeString(gender);
-        parcel.writeString(password);
+        parcel.writeInt(mId);
+        parcel.writeString(mFirstName);
+        parcel.writeString(mLastName);
+        parcel.writeString(mMobileNumber);
+        parcel.writeString(mEmail);
+        parcel.writeString(mGender);
+        parcel.writeString(mPassword);
     }
 }

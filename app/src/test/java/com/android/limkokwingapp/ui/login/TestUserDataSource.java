@@ -24,6 +24,7 @@ import static org.mockito.BDDMockito.then;
  * Created by gautam on 27/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class TestUserDataSource {
 
     @Mock

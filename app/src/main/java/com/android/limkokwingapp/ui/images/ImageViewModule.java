@@ -1,5 +1,7 @@
 package com.android.limkokwingapp.ui.images;
 
+import com.android.limkokwingapp.ui.images.view.ImageContract;
+
 import dagger.Binds;
 import dagger.Module;
 

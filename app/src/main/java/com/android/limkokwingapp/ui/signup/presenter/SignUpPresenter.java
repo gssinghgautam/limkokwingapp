@@ -1,9 +1,10 @@
-package com.android.limkokwingapp.ui.signup;
+package com.android.limkokwingapp.ui.signup.presenter;
 
 import com.android.limkokwingapp.BasePresenter;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.data.repository.local.UserDataSource;
 import com.android.limkokwingapp.rx.SchedulerProvider;
+import com.android.limkokwingapp.ui.signup.view.SignUpContract;
 import com.android.limkokwingapp.utility.ValidationUtils;
 import com.jakewharton.rxrelay2.BehaviorRelay;
 
@@ -17,6 +18,7 @@ import io.reactivex.observers.DisposableMaybeObserver;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class SignUpPresenter extends BasePresenter<SignUpContract.View> implements SignUpContract.Presenter {
 
     private final SignUpContract.View view;
@@ -51,7 +53,7 @@ public class SignUpPresenter extends BasePresenter<SignUpContract.View> implemen
         user.setLastName(view.getLName());
         user.setEmail(view.getEmail());
         user.setPassword(view.getPassword());
-        user.setMobile(view.getMobile());
+        user.setMobileNumber(view.getMobile());
         user.setGender(view.getGender());
 
         if (!validateInfo(user)) {
@@ -99,7 +101,7 @@ public class SignUpPresenter extends BasePresenter<SignUpContract.View> implemen
     private boolean validateInfo(User user) {
         if (!ValidationUtils.isValidString(user.getEmail())
                 || !ValidationUtils.isValidString(user.getPassword())
-                || !ValidationUtils.isValidString(user.getMobile())
+                || !ValidationUtils.isValidString(user.getMobileNumber())
                 || !ValidationUtils.isValidString(user.getGender())
                 ) {
             view.onFieldEmpty();
@@ -115,7 +117,7 @@ public class SignUpPresenter extends BasePresenter<SignUpContract.View> implemen
             return false;
         }
 
-        if (!ValidationUtils.isValidMobile(user.getMobile())) {
+        if (!ValidationUtils.isValidMobile(user.getMobileNumber())) {
             view.onMobileInvalid();
             return false;
         }

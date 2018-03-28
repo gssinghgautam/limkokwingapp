@@ -33,8 +33,9 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:contentDescription="@string/empty_view"
+            android:layout_width="@dimen/eighty_dp"
+            android:layout_height="@dimen/eighty_dp"
             app:srcCompat="@drawable/ic_picture" />
     </LinearLayout>
 

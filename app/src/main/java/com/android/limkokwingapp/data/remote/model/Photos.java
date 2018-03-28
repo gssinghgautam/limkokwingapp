@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by gautam on 26/03/18.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class Photos implements Parcelable {
 
     @SerializedName("page")

@@ -10,6 +10,7 @@ import com.android.limkokwingapp.data.entity.User;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @Database(entities = {User.class}, version = LimkokWingDatabase.VERSION, exportSchema = false)
 public abstract class LimkokWingDatabase extends RoomDatabase {
 

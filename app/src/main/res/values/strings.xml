@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">LimkokwingApp</string>
     <string name="email_hint">Email</string>
-    <string name="limkokwing_unversity">limkokwing university logo</string>
+    <string name="limkokwing_university">limkokwing university logo</string>
     <string name="login">LOGIN</string>
     <string name="password_hint">Password</string>
     <string name="password_description">Password Description</string>
@@ -29,4 +29,5 @@
     <string name="mobile_empty_error_msg">Mobile Number cannot be empty</string>
     <string name="user_not_exists">User Does not exists</string>
     <string name="image_gallery">Image Gallery</string>
+    <string name="empty_view">Empty View</string>
 </resources>

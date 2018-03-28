@@ -3,6 +3,8 @@ package com.android.limkokwingapp.ui.login;
 import android.content.SharedPreferences;
 
 import com.android.limkokwingapp.data.repository.local.UserDataSource;
+import com.android.limkokwingapp.ui.login.presenter.LoginPresenter;
+import com.android.limkokwingapp.ui.login.view.LoginContract;
 import com.android.limkokwingapp.utility.ValidationUtils;
 
 import org.junit.After;
@@ -22,15 +24,12 @@ import static org.mockito.Mockito.when;
  */
 
 
+@SuppressWarnings("DefaultFileTemplate")
 @RunWith(MockitoJUnitRunner.class)
 public class LoginPresenterTest {
 
     @Mock
     private LoginContract.LoginView loginView;
-
-    private TestScheduleProvider testScheduleProvider;
-
-    private UserDataSource dataSource;
 
     @Mock
     private SharedPreferences sharedPreference;
@@ -40,9 +39,9 @@ public class LoginPresenterTest {
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        testScheduleProvider = new TestScheduleProvider();
+        TestScheduleProvider testScheduleProvider = new TestScheduleProvider();
         TestUserDataSource testUserDataSource = new TestUserDataSource();
-        dataSource = testUserDataSource.getUserDataSource();
+        UserDataSource dataSource = testUserDataSource.getUserDataSource();
         loginPresenter = new LoginPresenter(loginView, dataSource, testScheduleProvider, sharedPreference);
     }
 

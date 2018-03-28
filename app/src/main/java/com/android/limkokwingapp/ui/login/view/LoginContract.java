@@ -1,4 +1,4 @@
-package com.android.limkokwingapp.ui.login;
+package com.android.limkokwingapp.ui.login.view;
 
 import com.android.limkokwingapp.BaseView;
 import com.android.limkokwingapp.data.entity.User;
@@ -7,6 +7,7 @@ import com.android.limkokwingapp.data.entity.User;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface LoginContract {
 
     interface LoginView extends BaseView {

@@ -1,5 +1,6 @@
 package com.android.limkokwingapp.ui.main;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
@@ -17,6 +18,8 @@ import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.ui.images.ImageActivity;
 import com.android.limkokwingapp.ui.login.LoginActivity;
+import com.android.limkokwingapp.ui.main.presenter.MainPresenter;
+import com.android.limkokwingapp.ui.main.view.MainContract;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.Utils;
 
@@ -71,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     private void intiView() {
         txtName.setText(String.format(Locale.getDefault(), "%s %s", user.getFirstName(), user.getLastName()));
-        txtMobile.setText(user.getMobile());
+        txtMobile.setText(user.getMobileNumber());
     }
 
     @OnClick({R.id.txt_mobile, R.id.btn_logout, R.id.btn_view_image})
@@ -115,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     public void onUpdateSuccess(User user) {
         Utils.showSnackShort(mainView, getString(R.string.mobile_update_success_msg));
-        txtMobile.setText(user.getMobile());
+        txtMobile.setText(user.getMobileNumber());
     }
 
     @Override
@@ -130,11 +133,12 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         finish();
     }
 
+    @SuppressLint("InflateParams")
     private void openEditMobileDialog(User user) {
         LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        View subView = inflater.inflate(R.layout.dialog_mobile_edit, null);
+        View subView = inflater.inflate(R.layout.dialog_mobile_edit, null,false);
         TextInputEditText mEditMobile = subView.findViewById(R.id.edit_mobile_number);
-        mEditMobile.setText(user.getMobile());
+        mEditMobile.setText(user.getMobileNumber());
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.update_mobile));
         builder.setView(subView);
@@ -142,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
         builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             String mobile = mEditMobile.getText().toString();
-            user.setMobile(mobile);
+            user.setMobileNumber(mobile);
             presenter.updateUserInfo(user);
             alertDialog.dismiss();
         });

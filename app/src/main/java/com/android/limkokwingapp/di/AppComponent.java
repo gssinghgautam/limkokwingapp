@@ -1,7 +1,6 @@
 package com.android.limkokwingapp.di;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 
 import com.android.limkokwingapp.App;
 
@@ -13,6 +12,7 @@ import dagger.android.AndroidInjectionModule;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @AppScope
 @Component(modules = {
         AndroidInjectionModule.class,

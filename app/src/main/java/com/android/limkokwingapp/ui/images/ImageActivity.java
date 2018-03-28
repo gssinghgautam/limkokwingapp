@@ -15,6 +15,9 @@ import android.widget.ProgressBar;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.remote.model.Photo;
+import com.android.limkokwingapp.ui.images.adapter.ImageAdapter;
+import com.android.limkokwingapp.ui.images.presenter.ImagePresenter;
+import com.android.limkokwingapp.ui.images.view.ImageContract;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.EndlessRecyclerOnScrollListener;
 import com.squareup.picasso.Picasso;
@@ -102,7 +105,9 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
 
     @Override
     public void showEmptyView() {
-
+        if (mImageAdapter.getItemCount() == 0) {
+            mEmptyView.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.android.limkokwingapp.ui.login;
+package com.android.limkokwingapp.ui.login.presenter;
 
 import android.content.SharedPreferences;
 
@@ -6,6 +6,8 @@ import com.android.limkokwingapp.BasePresenter;
 import com.android.limkokwingapp.data.entity.User;
 import com.android.limkokwingapp.data.repository.local.UserDataRepository;
 import com.android.limkokwingapp.rx.SchedulerProvider;
+import com.android.limkokwingapp.ui.login.view.LoginContract;
+import com.android.limkokwingapp.ui.login.model.LoginModel;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.ValidationUtils;
 import com.jakewharton.rxrelay2.BehaviorRelay;
@@ -20,6 +22,7 @@ import io.reactivex.disposables.Disposable;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class LoginPresenter extends BasePresenter<LoginContract.LoginView> implements LoginContract.Presenter {
 
     private final UserDataRepository userDataSource;

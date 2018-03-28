@@ -3,14 +3,14 @@ package com.android.limkokwingapp.ui.signup;
 import com.android.limkokwingapp.data.repository.local.UserDataSource;
 import com.android.limkokwingapp.ui.login.TestScheduleProvider;
 import com.android.limkokwingapp.ui.login.TestUserDataSource;
+import com.android.limkokwingapp.ui.signup.presenter.SignUpPresenter;
+import com.android.limkokwingapp.ui.signup.view.SignUpContract;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -18,23 +18,20 @@ import static org.mockito.Mockito.when;
 /**
  * Created by gautam on 27/03/18.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class SignUpPresenterTest {
 
     @Mock
     SignUpContract.View view;
-
-    private TestScheduleProvider testScheduleProvider;
-
-    private UserDataSource dataSource;
 
     private SignUpPresenter presenter;
 
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
-        testScheduleProvider = new TestScheduleProvider();
+        TestScheduleProvider testScheduleProvider = new TestScheduleProvider();
         TestUserDataSource testUserDataSource = new TestUserDataSource();
-        dataSource = testUserDataSource.getUserDataSource();
+        UserDataSource dataSource = testUserDataSource.getUserDataSource();
         presenter = new SignUpPresenter(view, dataSource, testScheduleProvider);
     }
 

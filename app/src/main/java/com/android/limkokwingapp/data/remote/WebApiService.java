@@ -5,13 +5,13 @@ import com.android.limkokwingapp.utility.ApiConstant;
 
 import io.reactivex.Flowable;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 /**
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface WebApiService {
 
     @GET(ApiConstant.FLICKER_PHOTO_SEARCH + ApiConstant.FLICKER_API_KEY + "&format=json&nojsoncallback=1")

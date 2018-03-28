@@ -1,9 +1,10 @@
-package com.android.limkokwingapp.ui.images;
+package com.android.limkokwingapp.ui.images.presenter;
 
 import com.android.limkokwingapp.BasePresenter;
 import com.android.limkokwingapp.data.remote.model.FlickerPhotos;
 import com.android.limkokwingapp.data.repository.remote.FlickerDataSource;
 import com.android.limkokwingapp.rx.SchedulerProvider;
+import com.android.limkokwingapp.ui.images.view.ImageContract;
 import com.jakewharton.rxrelay2.BehaviorRelay;
 
 import javax.inject.Inject;
@@ -15,6 +16,7 @@ import io.reactivex.functions.Consumer;
  * Created by gautam on 27/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ImagePresenter extends BasePresenter<ImageContract.View> implements ImageContract.Presenter {
 
     private final ImageContract.View view;

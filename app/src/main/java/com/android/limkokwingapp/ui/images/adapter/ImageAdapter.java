@@ -1,4 +1,4 @@
-package com.android.limkokwingapp.ui.images;
+package com.android.limkokwingapp.ui.images.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -17,9 +17,10 @@ import java.util.List;
  * Created by gautam on 27/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
-    private List<Photo> photoList;
+    private final List<Photo> photoList;
 
     private final Picasso picasso;
 
@@ -59,10 +60,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
 
     @Override
     public int getItemCount() {
-        return (photoList != null && !photoList.isEmpty()) ? photoList.size() : 0;
+        return !photoList.isEmpty() ? photoList.size() : 0;
     }
 
-    interface OnPhotoClickListener {
+    public interface OnPhotoClickListener {
 
         void onPhotoClick(Photo photo);
     }

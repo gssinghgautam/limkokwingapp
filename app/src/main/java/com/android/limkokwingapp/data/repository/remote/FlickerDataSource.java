@@ -12,6 +12,7 @@ import io.reactivex.Flowable;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class FlickerDataSource implements FlickerDataRepository {
 
     private final WebApiService webApiService;

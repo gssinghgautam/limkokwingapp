@@ -14,7 +14,7 @@ public abstract class BasePresenter<V> {
 
     protected final V view;
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private final CompositeDisposable disposables = new CompositeDisposable();
 
     protected BasePresenter(V view) {
         this.view = view;

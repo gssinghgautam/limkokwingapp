@@ -8,6 +8,7 @@ import io.reactivex.Flowable;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public interface FlickerDataRepository {
 
     Flowable<FlickerPhotos> searchFlickerPhotos(String text, int page);

@@ -9,6 +9,7 @@ import android.widget.Toast;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 public class Utils {
 
     /**
@@ -23,8 +24,8 @@ public class Utils {
 
     /**
      * Method to show toast message
-     * @param context
-     * @param message
+     * @param context Context Of Activity
+     * @param message Message to display in the toast
      */
     public static void showToast(Context context, String message) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();

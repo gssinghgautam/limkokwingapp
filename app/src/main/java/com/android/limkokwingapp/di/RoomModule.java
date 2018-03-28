@@ -14,6 +14,7 @@ import dagger.Provides;
  * Created by gautam on 26/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @Module(includes = ActivityBuilderModule.class)
 public class RoomModule {
 

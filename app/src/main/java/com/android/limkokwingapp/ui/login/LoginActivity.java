@@ -13,6 +13,8 @@ import android.widget.ProgressBar;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.entity.User;
+import com.android.limkokwingapp.ui.login.presenter.LoginPresenter;
+import com.android.limkokwingapp.ui.login.view.LoginContract;
 import com.android.limkokwingapp.ui.main.MainActivity;
 import com.android.limkokwingapp.ui.signup.SignUpActivity;
 import com.android.limkokwingapp.utility.ApiConstant;
@@ -148,7 +150,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Lo
         presenter.stop();
     }
 
-    private TextWatcher mTextWatcher = new TextWatcher() {
+    private final TextWatcher mTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 

@@ -19,6 +19,7 @@ import io.reactivex.Single;
  * Created by gautam on 25/03/18.
  */
 
+@SuppressWarnings("DefaultFileTemplate")
 @Dao
 public interface UserDao {
 

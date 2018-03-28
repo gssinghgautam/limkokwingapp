@@ -14,39 +14,21 @@ public class ValidationUtils {
             "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                     + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
-    private static final Pattern EMAIL_ADDRESS = Pattern.compile(EMAIL_PATTERN);
-
 
     /**
      * Method to check whether the string is empty or not.
      *
-     * @param string
+     * @param string String to validate
      * @return boolean true if string is empty
      */
     public static boolean isValidString(String string) {
         return !string.isEmpty();
     }
 
-
-    /**
-     * Method to check whether the String[] element is empty or not.
-     *
-     * @param strings
-     * @return boolean true if any of the String[] element is empty
-     */
-    public static boolean isValidString(String[] strings) {
-        for (String string : strings) {
-            return isValidString(string);
-        }
-        return false;
-
-    }
-
-
     /**
      * Method to check valid Malaysian mobile number
      *
-     * @param mobile
+     * @param mobile Mobile number
      * @return boolean true if mobile number is valid
      */
     public static boolean isValidMobile(@NonNull String mobile) {
@@ -56,7 +38,7 @@ public class ValidationUtils {
     /**
      * Method to check valid Gender
      *
-     * @param gender
+     * @param gender Gender (Male or Female)
      * @return boolean true if gender is valid
      */
     public static boolean isValidGender(@NonNull String gender) {
@@ -67,7 +49,7 @@ public class ValidationUtils {
     /**
      * Method to check valid password
      *
-     * @param password - Password should be atleast 8 characters with one special character (Eg: abcdefgh@)
+     * @param password - Password should be at least 8 characters with one special character (Eg: abcdefgh@)
      * @return boolean true if password is valid
      */
     public static boolean isValidPassword(@NonNull String password) {

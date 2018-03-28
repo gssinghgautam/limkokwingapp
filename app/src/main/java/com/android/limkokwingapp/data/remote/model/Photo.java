@@ -10,6 +10,7 @@ import java.util.Locale;
 /**
  * Created by gautam on 26/03/18.
  */
+@SuppressWarnings("DefaultFileTemplate")
 public class Photo implements Parcelable {
 
     @SerializedName("id")
