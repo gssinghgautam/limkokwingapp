@@ -35,6 +35,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/chrome_grey"
+                android:drawableEnd="@drawable/ic_edit"
+                android:drawableRight="@drawable/ic_edit"
                 android:gravity="center"
                 android:padding="@dimen/dp_10"
                 android:textAppearance="?android:attr/textAppearanceMedium"

@@ -30,4 +30,7 @@
     <string name="user_not_exists">User Does not exists</string>
     <string name="image_gallery">Image Gallery</string>
     <string name="empty_view">Empty View</string>
+    <string name="update_name">Update Mobile</string>
+    <string name="name_updated_msg">Name updated successfully</string>
+    <string name="retry">RETRY</string>
 </resources>

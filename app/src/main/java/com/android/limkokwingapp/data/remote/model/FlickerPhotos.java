@@ -19,6 +19,9 @@ public class FlickerPhotos implements Parcelable {
     @SerializedName("stat")
     private String stat;
 
+    public FlickerPhotos(){}
+
+
     protected FlickerPhotos(Parcel in) {
         photos = in.readParcelable(Photos.class.getClassLoader());
         stat = in.readString();

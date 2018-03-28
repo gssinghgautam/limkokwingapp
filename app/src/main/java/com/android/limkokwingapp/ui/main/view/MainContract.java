@@ -16,7 +16,9 @@ public interface MainContract {
 
         void toInvalidMobile();
 
-        void onUpdateSuccess(User user);
+        void onUpdateMobileNumber(String number);
+
+        void onUpdateName(String fName, String lName);
 
         void onUpdateFailed();
 
@@ -25,7 +27,9 @@ public interface MainContract {
 
     interface Presenter {
 
-        void updateUserInfo(User user);
+        void updateMobileNumber(User user);
+
+        void updateName(User user);
 
         void logout();
 

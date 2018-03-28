@@ -37,6 +37,7 @@ public class AppModule {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         builder.connectTimeout(ApiConstant.TIMEOUT_IN_SEC, TimeUnit.SECONDS);
         builder.readTimeout(ApiConstant.TIMEOUT_IN_SEC, TimeUnit.SECONDS);
+        builder.writeTimeout(ApiConstant.TIMEOUT_IN_SEC, TimeUnit.SECONDS);
         builder.addInterceptor(logger);
         return builder.build();
     }

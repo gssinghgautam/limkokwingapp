@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
@@ -28,6 +29,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
 public class ImageActivity extends AppCompatActivity implements ImageContract.View, ImageAdapter.OnPhotoClickListener {
@@ -50,6 +52,9 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
     @BindView(R.id.empty_view)
     LinearLayout mEmptyView;
 
+    @BindView(R.id.btn_retry)
+    Button btnRetry;
+
     private ImageAdapter mImageAdapter;
 
     @Override
@@ -64,6 +69,9 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         initView();
+        btnRetry.setOnClickListener(view -> {
+            mImagePresenter.onRetry();
+        });
     }
 
     private void initView() {
@@ -113,6 +121,11 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
     @Override
     public void showImages(List<Photo> photoList) {
         mImageAdapter.setData(photoList);
+    }
+
+    @Override
+    public void hideEmptyView() {
+        mEmptyView.setVisibility(View.GONE);
     }
 
     @Override

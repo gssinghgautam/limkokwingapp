@@ -19,7 +19,7 @@ import io.reactivex.functions.Consumer;
 @SuppressWarnings("DefaultFileTemplate")
 public class ImagePresenter extends BasePresenter<ImageContract.View> implements ImageContract.Presenter {
 
-    private final ImageContract.View view;
+    private ImageContract.View view;
 
     private final FlickerDataSource flickerDataSource;
 
@@ -45,33 +45,36 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
     @Override
     public void start() {
         super.start();
-        addDisposable(
-                flickerDataSource.searchFlickerPhotos("cat", currentPage)
-                        .subscribeOn(appSchedulerProvider.computation())
-                        .observeOn(appSchedulerProvider.ui())
-                        .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
-                        .doOnError(t -> publishRequestState(RequestState.ERROR))
-                        .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
-                        .subscribe(flickerPhotosConsumer)
-        );
+        loadItems();
+
     }
 
+    private void loadItems() {
+        addDisposable(flickerDataSource.searchFlickerPhotos("cat", currentPage)
+                .subscribeOn(appSchedulerProvider.computation())
+                .observeOn(appSchedulerProvider.ui())
+                .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
+                .doOnError(t -> publishRequestState(RequestState.ERROR))
+                .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
+                .subscribe(flickerPhotosConsumer, flickerError));
+    }
 
-    private Consumer<FlickerPhotos> flickerPhotosConsumer = new Consumer<FlickerPhotos>() {
-        @Override
-        public void accept(FlickerPhotos flickerPhotos) throws Exception {
-            if (flickerPhotos != null && flickerPhotos.getStat().equalsIgnoreCase("ok")) {
-                if (flickerPhotos.getPhotos() != null) {
-                    setCurrentPage(flickerPhotos.getPhotos().getPage());
-                    setTotalPage(flickerPhotos.getPhotos().getPages());
-                    if (flickerPhotos.getPhotos().getPhoto() != null && !flickerPhotos.getPhotos().getPhoto().isEmpty()) {
-                        view.showImages(flickerPhotos.getPhotos().getPhoto());
-                    } else {
-                        view.showEmptyView();
-                    }
+    private Consumer<FlickerPhotos> flickerPhotosConsumer = flickerPhotos -> {
+        if (flickerPhotos != null && flickerPhotos.getStat().equalsIgnoreCase("ok")) {
+            if (flickerPhotos.getPhotos() != null) {
+                setCurrentPage(flickerPhotos.getPhotos().getPage());
+                setTotalPage(flickerPhotos.getPhotos().getPages());
+                if (flickerPhotos.getPhotos().getPhoto() != null && !flickerPhotos.getPhotos().getPhoto().isEmpty()) {
+                    view.showImages(flickerPhotos.getPhotos().getPhoto());
+                } else {
+                    view.showEmptyView();
                 }
             }
         }
+    };
+
+    private Consumer<Throwable> flickerError = throwable -> {
+        publishRequestState(RequestState.ERROR);
     };
 
 
@@ -88,23 +91,25 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
                 case IDLE:
                     break;
                 case LOADING:
+                    view.hideEmptyView();
                     view.showProgress();
                     break;
                 case COMPLETE:
                     view.hideProgress();
                     break;
                 case ERROR:
+                    view.showEmptyView();
                     view.hideProgress();
                     break;
             }
         }, Throwable::printStackTrace);
     }
 
-    public void setCurrentPage(int currentPage) {
+    private void setCurrentPage(int currentPage) {
         this.currentPage = currentPage;
     }
 
-    public void setTotalPage(int totalPage) {
+    private void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
     }
 
@@ -124,11 +129,8 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
         }
     }
 
-    public int getTotalPage() {
-        return totalPage;
-    }
-
-    public int getCurrentPage() {
-        return currentPage;
+    @Override
+    public void onRetry() {
+        loadItems();
     }
 }

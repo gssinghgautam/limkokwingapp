@@ -50,7 +50,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     }
 
     @Override
-    public void updateUserInfo(User user) {
+    public void updateMobileNumber(User user) {
         if (!isValid(user.getMobileNumber())) {
             return;
         }
@@ -63,7 +63,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                     publishRequestState(RequestState.ERROR);
                 })
                 .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
-                .subscribe(() -> view.onUpdateSuccess(user)));
+                .subscribe(() -> view.onUpdateMobileNumber(user.getMobileNumber())));
     }
 
     private boolean isValid(String mobile) {
@@ -76,6 +76,20 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
             return false;
         }
         return true;
+    }
+
+    @Override
+    public void updateName(User user) {
+        addDisposable(Completable.fromRunnable(() -> userDataSource.updateUser(user))
+                .subscribeOn(appSchedulerProvider.computation())
+                .observeOn(appSchedulerProvider.ui())
+                .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
+                .doOnError(t -> {
+                    view.onUpdateFailed();
+                    publishRequestState(RequestState.ERROR);
+                })
+                .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
+                .subscribe(() -> view.onUpdateName(user.getFirstName(), user.getLastName())));
     }
 
     @Override

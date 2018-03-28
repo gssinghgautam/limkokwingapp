@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         txtMobile.setText(user.getMobileNumber());
     }
 
-    @OnClick({R.id.txt_mobile, R.id.btn_logout, R.id.btn_view_image})
+    @OnClick({R.id.txt_mobile, R.id.btn_logout, R.id.btn_view_image, R.id.txt_name})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.txt_mobile:
@@ -85,12 +85,20 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
                     openEditMobileDialog(user);
                 }
                 break;
+
             case R.id.btn_logout:
                 presenter.logout();
                 break;
+
             case R.id.btn_view_image:
                 Intent intent = new Intent(MainActivity.this, ImageActivity.class);
                 startActivity(intent);
+                break;
+
+            case R.id.txt_name:
+                if (user != null) {
+                    openEditNameDialog(user);
+                }
                 break;
         }
     }
@@ -116,9 +124,15 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     }
 
     @Override
-    public void onUpdateSuccess(User user) {
+    public void onUpdateMobileNumber(String mobileNumber) {
         Utils.showSnackShort(mainView, getString(R.string.mobile_update_success_msg));
-        txtMobile.setText(user.getMobileNumber());
+        txtMobile.setText(mobileNumber);
+    }
+
+    @Override
+    public void onUpdateName(String fName, String lName) {
+        Utils.showSnackShort(mainView, getString(R.string.name_updated_msg));
+        txtName.setText(String.format(Locale.getDefault(), "%s %s", fName, lName));
     }
 
     @Override
@@ -136,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @SuppressLint("InflateParams")
     private void openEditMobileDialog(User user) {
         LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
-        View subView = inflater.inflate(R.layout.dialog_mobile_edit, null,false);
+        View subView = inflater.inflate(R.layout.dialog_mobile_edit, null, false);
         TextInputEditText mEditMobile = subView.findViewById(R.id.edit_mobile_number);
         mEditMobile.setText(user.getMobileNumber());
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -147,7 +161,34 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
             String mobile = mEditMobile.getText().toString();
             user.setMobileNumber(mobile);
-            presenter.updateUserInfo(user);
+            presenter.updateMobileNumber(user);
+            alertDialog.dismiss();
+        });
+
+        builder.setNegativeButton(getString(R.string.cancel), (dialog, which) -> alertDialog.dismiss());
+
+        builder.show();
+    }
+
+    @SuppressLint("InflateParams")
+    private void openEditNameDialog(User user) {
+        LayoutInflater inflater = LayoutInflater.from(MainActivity.this);
+        View subView = inflater.inflate(R.layout.dialog_name_edit, null, false);
+        TextInputEditText mEditFirstName = subView.findViewById(R.id.edit_first_name);
+        TextInputEditText mEditLastName = subView.findViewById(R.id.edit_last_name);
+        mEditFirstName.setText(user.getFirstName());
+        mEditLastName.setText(user.getLastName());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(getString(R.string.update_name));
+        builder.setView(subView);
+        final AlertDialog alertDialog = builder.create();
+
+        builder.setPositiveButton(getString(R.string.ok), (dialog, which) -> {
+            String firstName = mEditFirstName.getText().toString();
+            String lastName = mEditLastName.getText().toString();
+            user.setFirstName(firstName);
+            user.setLastName(lastName);
+            presenter.updateName(user);
             alertDialog.dismiss();
         });
 

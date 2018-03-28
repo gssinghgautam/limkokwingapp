@@ -17,10 +17,15 @@ public interface ImageContract {
         void showEmptyView();
 
         void showImages(List<Photo> photoList);
+
+        void hideEmptyView();
+
     }
 
     interface Presenter {
         void loadNextPage();
+
+        void onRetry();
     }
 
 }

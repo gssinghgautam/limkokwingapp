@@ -7,7 +7,7 @@ package com.android.limkokwingapp.utility;
 @SuppressWarnings("DefaultFileTemplate")
 public class ApiConstant {
 
-    public static final int TIMEOUT_IN_SEC = 125;
+    public static final int TIMEOUT_IN_SEC = 10;
 
     public static final String RELEASE_END_POINT = "https://api.flickr.com/";
 
