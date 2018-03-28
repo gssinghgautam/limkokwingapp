@@ -46,7 +46,6 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
     public void start() {
         super.start();
         loadItems();
-
     }
 
     private void loadItems() {
@@ -73,10 +72,7 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
         }
     };
 
-    private Consumer<Throwable> flickerError = throwable -> {
-        publishRequestState(RequestState.ERROR);
-    };
-
+    private Consumer<Throwable> flickerError = throwable -> publishRequestState(RequestState.ERROR);
 
     private void publishRequestState(RequestState requestState) {
         addDisposable(Observable.just(requestState)
@@ -117,15 +113,13 @@ public class ImagePresenter extends BasePresenter<ImageContract.View> implements
     public void loadNextPage() {
         if (currentPage <= totalPage) {
             currentPage++;
-            addDisposable(
-                    flickerDataSource.searchFlickerPhotos("cat", currentPage)
-                            .subscribeOn(appSchedulerProvider.computation())
-                            .observeOn(appSchedulerProvider.ui())
-                            .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
-                            .doOnError(t -> publishRequestState(RequestState.ERROR))
-                            .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
-                            .subscribe(flickerPhotosConsumer)
-            );
+            addDisposable(flickerDataSource.searchFlickerPhotos("cat", currentPage)
+                    .subscribeOn(appSchedulerProvider.computation())
+                    .observeOn(appSchedulerProvider.ui())
+                    .doOnSubscribe(s -> publishRequestState(RequestState.LOADING))
+                    .doOnError(t -> publishRequestState(RequestState.ERROR))
+                    .doOnComplete(() -> publishRequestState(RequestState.COMPLETE))
+                    .subscribe(flickerPhotosConsumer));
         }
     }
 
