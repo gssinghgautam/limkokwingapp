@@ -2,6 +2,7 @@ package com.android.limkokwingapp.ui.images;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -21,6 +22,8 @@ import com.android.limkokwingapp.ui.images.presenter.ImagePresenter;
 import com.android.limkokwingapp.ui.images.view.ImageContract;
 import com.android.limkokwingapp.utility.ApiConstant;
 import com.android.limkokwingapp.utility.EndlessRecyclerOnScrollListener;
+import com.android.limkokwingapp.utility.NetworkUtils;
+import com.android.limkokwingapp.utility.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -29,7 +32,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import dagger.android.AndroidInjection;
 
 public class ImageActivity extends AppCompatActivity implements ImageContract.View, ImageAdapter.OnPhotoClickListener {
@@ -55,6 +57,9 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
     @BindView(R.id.btn_retry)
     Button btnRetry;
 
+    @BindView(R.id.main_view)
+    CoordinatorLayout mainView;
+
     private ImageAdapter mImageAdapter;
 
     @Override
@@ -70,7 +75,12 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
         }
         initView();
         btnRetry.setOnClickListener(view -> {
-            mImagePresenter.onRetry();
+            if (NetworkUtils.isConnected(ImageActivity.this)) {
+                mImagePresenter.onRetry();
+            } else {
+                showEmptyView();
+                Utils.showSnackShort(mainView, getString(R.string.internet_error));
+            }
         });
     }
 
@@ -83,7 +93,12 @@ public class ImageActivity extends AppCompatActivity implements ImageContract.Vi
         mGalleryRecyclerView.addOnScrollListener(new EndlessRecyclerOnScrollListener(layoutManager) {
             @Override
             public void onLoadMore() {
-                mImagePresenter.loadNextPage();
+                if (NetworkUtils.isConnected(ImageActivity.this)) {
+                    mImagePresenter.loadNextPage();
+                } else {
+                    showEmptyView();
+                    Utils.showSnackShort(mainView, getString(R.string.internet_error));
+                }
             }
         });
         mImageAdapter.setOnPhotoClickListener(this);
