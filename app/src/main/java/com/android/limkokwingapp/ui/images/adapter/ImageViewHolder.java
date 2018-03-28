@@ -18,6 +18,7 @@ import butterknife.ButterKnife;
 @SuppressWarnings("DefaultFileTemplate")
 class ImageViewHolder extends RecyclerView.ViewHolder {
 
+
     @BindView(R.id.gallery_item_imageView)
     ImageView galleryItemImageView;
 
@@ -28,7 +29,6 @@ class ImageViewHolder extends RecyclerView.ViewHolder {
 
     void bind(Photo photo, Picasso picasso) {
         picasso.load(photo.getImageUrl())
-                .fit()
                 .into(galleryItemImageView);
     }
 }

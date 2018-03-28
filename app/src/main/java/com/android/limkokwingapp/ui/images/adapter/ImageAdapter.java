@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.android.limkokwingapp.R;
 import com.android.limkokwingapp.data.remote.model.Photo;
+import com.android.limkokwingapp.utility.ImageGalleryUtils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -23,6 +24,10 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     private final List<Photo> photoList;
 
     private final Picasso picasso;
+
+    private int mGridItemWidth;
+
+    private int mGridItemHeight;
 
     private OnPhotoClickListener onPhotoClickListener;
 
@@ -44,6 +49,7 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     @Override
     public ImageViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.image_item_view, parent, false);
+        view.setLayoutParams(getGridItemLayoutParams(view));
         return new ImageViewHolder(view);
     }
 
@@ -66,5 +72,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageViewHolder> {
     public interface OnPhotoClickListener {
 
         void onPhotoClick(Photo photo);
+    }
+
+    private ViewGroup.LayoutParams getGridItemLayoutParams(View view) {
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        int screenWidth = ImageGalleryUtils.getScreenWidth(view.getContext());
+        int numOfColumns=2;
+        mGridItemWidth = screenWidth / numOfColumns;
+        mGridItemHeight = screenWidth / numOfColumns;
+
+        layoutParams.width = mGridItemWidth;
+        layoutParams.height = mGridItemHeight;
+
+        return layoutParams;
     }
 }
